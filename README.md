@@ -1,5 +1,7 @@
 # KAZZHOL Instagram Agent (MVP)
 
+![CI](https://github.com/arrKLV/hotel-plan/actions/workflows/ci.yml/badge.svg)
+
 AI-администратор Instagram Direct для сети отелей KAZZHOL. Отвечает гостям 24/7 на RU/KZ/EN,
 квалифицирует заявку (даты, гости, цель), складывает лид в дашборд и эскалирует горячее менеджеру.
 
@@ -38,8 +40,21 @@ uvicorn app.main:app --host 0.0.0.0 --port $PORT
 - `/demo` — интерактивная витрина агента
 - `/healthz` — health-check для балансировщика
 
+## Тесты
+```bash
+pip install -r requirements-dev.txt
+pytest -q
+```
+CI (`.github/workflows/ci.yml`) гоняет import-smoke + pytest на каждый push/PR.
+
+## Docker
+```bash
+docker build -t kazzhol-agent .
+docker run -p 8000:8000 --env-file .env kazzhol-agent
+```
+
 ## Деплой (прод)
-Любой PaaS, читающий `Procfile` (Railway / Render / Fly / Heroku):
+Любой PaaS, читающий `Procfile` или `Dockerfile` (Railway / Render / Fly / Heroku):
 1. Подключить git-репозиторий.
 2. Задать env-переменные в панели: `ANTHROPIC_API_KEY`, `IG_VERIFY_TOKEN`,
    `IG_ACCESS_TOKEN`, `IG_APP_SECRET`, `IG_ACCOUNT_ID`.
