@@ -1,0 +1,16 @@
+# secrets & local config
+.env
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# local database
+*.db
+
+# local editor / tooling
+.claude/settings.local.json
+
+# os
+.DS_Store
