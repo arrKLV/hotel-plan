@@ -23,6 +23,11 @@ GRAPH_API_VERSION = "v21.0"
 WORK_HOURS_START = int(os.getenv("WORK_HOURS_START", "9"))
 WORK_HOURS_END = int(os.getenv("WORK_HOURS_END", "20"))
 
+# База данных
+# Прод: Postgres (напр. Neon) — задать DATABASE_URL=postgresql://user:pass@host/db
+# Локально: если DATABASE_URL пуст — используется SQLite-файл DB_PATH.
+DATABASE_URL = os.getenv("DATABASE_URL", "")
+
 # Пути
 DATA_DIR = BASE_DIR / "data"
 KB_PATH = DATA_DIR / "knowledge_base.json"
